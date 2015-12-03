@@ -133,7 +133,7 @@ function bindButtons(){
           payload.date = document.getElementById('date').value;
           payload.lbs = document.getElementById('lbs').value;
           
-          req.open('POST', '/insert', true);
+          req.open('POST', 'http://web.engr.oregonstate.edu/~walterer/insert', true);
           req.setRequestHeader('Content-Type', 'application/json');
           req.addEventListener('load', function(){
           	if (req.status >= 200 && req.status < 400){

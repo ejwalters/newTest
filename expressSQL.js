@@ -75,6 +75,7 @@ app.post('/insert',function(req,res,next){
       return;
     }
     context.results = "Inserted id " + result.insertId;
+    console.log(process.env.PWD);
     res.render('home',context);
   });
 });
