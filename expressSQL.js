@@ -54,7 +54,7 @@ app.get('/reset-table',function(req,res,next){
 */
 app.get('/',function(req,res,next){
   var context = {};
-  pool.query('SELECT * FROM todo', function(err, rows, fields){
+  pool.query('SELECT * FROM workouts', function(err, rows, fields){
     if(err){
       console.log(err);
       next(err);
@@ -67,7 +67,7 @@ app.get('/',function(req,res,next){
 
 app.get('/insert',function(req,res,next){
   var context = {};
-  pool.query("INSERT INTO todo (`name`) VALUES (?)", [req.query.c], function(err, result){
+  pool.query("INSERT INTO workouts (`name`) VALUES (?)", [req.query.c], function(err, result){
     if(err){
       next(err);
       return;
@@ -93,7 +93,7 @@ app.get('/delete',function(req,res,next){
 ///simple-update?id=2&name=The+Task&done=false&due=2015-12-5
 app.get('/simple-update',function(req,res,next){
   var context = {};
-  pool.query("UPDATE todo SET name=?, done=?, due=? WHERE id=? ",
+  pool.query("UPDATE workouts SET name=?, done=?, due=? WHERE id=? ",
     [req.query.name, req.query.done, req.query.due, req.query.id],
     function(err, result){
     if(err){
@@ -108,14 +108,14 @@ app.get('/simple-update',function(req,res,next){
 ///safe-update?id=1&name=The+Task&done=false
 app.get('/safe-update',function(req,res,next){
   var context = {};
-  pool.query("SELECT * FROM todo WHERE id=?", [req.query.id], function(err, result){
+  pool.query("SELECT * FROM workouts WHERE id=?", [req.query.id], function(err, result){
     if(err){
       next(err);
       return;
     }
     if(result.length == 1){
       var curVals = result[0];
-      pool.query("UPDATE todo SET name=?, done=?, due=? WHERE id=? ",
+      pool.query("UPDATE workouts SET name=?, done=?, due=? WHERE id=? ",
         [req.query.name || curVals.name, req.query.done || curVals.done, req.query.due || curVals.due, req.query.id],
         function(err, result){
         if(err){
