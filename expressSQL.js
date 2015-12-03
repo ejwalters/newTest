@@ -60,7 +60,9 @@ app.get('/',function(req,res,next){
       next(err);
       return;
     }
-    context.results = JSON.stringify(rows);
+    //context.results = JSON.stringify(rows);
+    
+    context.results = process.env.PWD;
     res.render('home', context);
   });
 });
@@ -74,8 +76,7 @@ app.post('/insert',function(req,res,next){
       next(err);
       return;
     }
-    //context.results = "Inserted id " + result.insertId;
-    context.result = process.env.PWD;
+    context.results = "Inserted id " + result.insertId;
     res.render('home',context);
   });
 });
