@@ -22,6 +22,23 @@ app.set('port', 3000);
 
 app.get('/reset-table',function(req,res,next){
   var context = {};
+  pool.query("DROP TABLE IF EXISTS todo", function(err){ //replace your connection pool with the your variable containing the connection pool
+    var createString = "CREATE TABLE workouts("+
+    "id INT PRIMARY KEY AUTO_INCREMENT,"+
+    "name VARCHAR(255) NOT NULL,"+
+    "reps INT,"+
+    "weight INT,"+
+    "date DATE,"+
+    "lbs BOOLEAN)";
+    mysql.pool.query(createString, function(err){
+      context.results = "Table reset";
+      res.render('home',context);
+    })
+  });
+});
+/*
+app.get('/reset-table',function(req,res,next){
+  var context = {};
   pool.query("DROP TABLE IF EXISTS todo", function(err){
     var createString = "CREATE TABLE todo(" +
     "id INT PRIMARY KEY AUTO_INCREMENT," +
@@ -34,7 +51,7 @@ app.get('/reset-table',function(req,res,next){
     })
   });
 });
-
+*/
 app.get('/',function(req,res,next){
   var context = {};
   pool.query('SELECT * FROM todo', function(err, rows, fields){
