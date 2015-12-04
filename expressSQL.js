@@ -77,7 +77,11 @@ app.get('/delete',function(req,res,next){
 });
 
 
+app.get('/edit', function(req,res,next){
+	
+	console.log("test");
 
+});
 ///safe-update?id=1&name=The+Task&done=false
 app.get('/safe-update',function(req,res,next){
   var context = {};
