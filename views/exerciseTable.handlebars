@@ -1,0 +1,39 @@
+<h1>Exercise Table</h1>
+
+{{#if results}}
+<table>
+	<tr>
+		<th>Name</th>
+		<th>Reps</th>
+		<th>Weight</th>
+		<th>Date</th>
+		<th>Lbs</th>
+	</tr>
+
+  {{#each results}}
+  	<tr>
+    	<input type="hidden" value="{{this.id}}">
+  		<td>{{this.name}}</td>
+  		<td>{{this.reps}}</td>
+  		<td>{{this.weight}}</td>
+  		<td>{{this.date}}</td>
+  		<td>{{this.lbs}}</td>
+	</tr>
+
+  {{/each}}
+  
+</table>
+{{/if}}
+
+<form>
+		<fieldset>
+			<legend>Exercise</legend>
+			<p>Name: <input id="name" type="text" name="name"/></p>
+			<p>Reps: <input  id="reps" type="text" name="reps"/></p>
+			<p>Weight: <input id="weight" type="text" name="weight"/></p>
+			<p>Date: <input id="date" type="text" name="date"/></p>
+			<p>Lbs: <input id="lbs" type="text" name="lbs"/></p>
+			
+		</fieldset>
+		<input id="addExercise" type="submit" name="add" value="Add Exercise" />
+</form>
