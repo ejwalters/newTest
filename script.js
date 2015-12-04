@@ -25,14 +25,14 @@ function buildTable(array){
 	var deleteButton;
     var editButton;
     
-    for(var i = 0; i < properties.length; i++)
+    /*for(var i = 0; i < properties.length; i++)
     {
         
         newHeader = document.createElement("th");
         newHeader.textContent = properties[i];
         
         firstRow.appendChild(newHeader);
-    }
+    }*/
     
     newTable.appendChild(firstRow);
 

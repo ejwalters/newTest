@@ -36,22 +36,7 @@ app.get('/reset-table',function(req,res,next){
     })
   });
 });
-/*
-app.get('/reset-table',function(req,res,next){
-  var context = {};
-  pool.query("DROP TABLE IF EXISTS todo", function(err){
-    var createString = "CREATE TABLE todo(" +
-    "id INT PRIMARY KEY AUTO_INCREMENT," +
-    "name VARCHAR(255) NOT NULL," +
-    "done BOOLEAN," +
-    "due DATE)";
-    pool.query(createString, function(err){
-      context.results = "Table reset";
-      res.render('home',context);
-    })
-  });
-});
-*/
+
 app.get('/',function(req,res,next){
   var context = {};
   pool.query('SELECT * FROM workouts', function(err, rows, fields){
@@ -60,9 +45,7 @@ app.get('/',function(req,res,next){
       next(err);
       return;
     }
-    //context.results = JSON.stringify(rows);
-    
-    context.results = process.env.PWD;
+    context.results = JSON.stringify(rows);
     res.render('home', context);
   });
 });
@@ -94,20 +77,6 @@ app.get('/delete',function(req,res,next){
 });
 
 
-///simple-update?id=2&name=The+Task&done=false&due=2015-12-5
-app.get('/simple-update',function(req,res,next){
-  var context = {};
-  pool.query("UPDATE workouts SET name=?, done=?, due=? WHERE id=? ",
-    [req.query.name, req.query.done, req.query.due, req.query.id],
-    function(err, result){
-    if(err){
-      next(err);
-      return;
-    }
-    context.results = "Updated " + result.changedRows + " rows.";
-    res.render('home',context);
-  });
-});
 
 ///safe-update?id=1&name=The+Task&done=false
 app.get('/safe-update',function(req,res,next){
@@ -119,8 +88,8 @@ app.get('/safe-update',function(req,res,next){
     }
     if(result.length == 1){
       var curVals = result[0];
-      pool.query("UPDATE workouts SET name=?, done=?, due=? WHERE id=? ",
-        [req.query.name || curVals.name, req.query.done || curVals.done, req.query.due || curVals.due, req.query.id],
+      pool.query("UPDATE workouts SET name=?, reps=?, weight=?, date=?, lbs=? WHERE id=? ",
+        [req.query.name || curVals.name, req.query.reps || curVals.reps, req.query.weight || curVals.weight, req.query.date || curVals.date, req.query.lbs || curVals.lbs,  req.query.id],
         function(err, result){
         if(err){
           next(err);
