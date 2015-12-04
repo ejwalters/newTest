@@ -81,7 +81,6 @@ app.get('/edit', function(req,res,next){
 	
 	var context = {};
 	
-	console.log("test");
 	var name = req.query.name;
 	var reps = req.query.reps;
 	var weight = req.query.weight;
@@ -95,9 +94,8 @@ app.get('/edit', function(req,res,next){
 	context.lbs = lbs;
 	res.render('editForm', context);
 	
-	
-
 });
+
 ///safe-update?id=1&name=The+Task&done=false
 app.get('/safe-update',function(req,res,next){
   var context = {};
