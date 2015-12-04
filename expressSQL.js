@@ -79,7 +79,23 @@ app.get('/delete',function(req,res,next){
 
 app.get('/edit', function(req,res,next){
 	
+	var context = {};
+	
 	console.log("test");
+	var name = req.query.name;
+	var reps = req.query.reps;
+	var weight = req.query.weight;
+	var date = req.query.date;
+	var lbs = req.query.lbs;
+	
+	context.name = name;
+	context.reps = reps;
+	context.weight = weight;
+	context.date = date;
+	context.lbs = lbs;
+	res.render('editForm', context);
+	
+	
 
 });
 ///safe-update?id=1&name=The+Task&done=false
