@@ -1,12 +1,22 @@
+
+function readInput(form){
+
+	
+	var name = form.name.value;
+	var reps = form.reps.value;
+	var weight = form.weight.value;
+	var date = form.date.value;
+	var lbs = form.lbs.value;
+
+}
+
 var collection = [ 
     
-    {Name:"1, 1" , Reps: "2, 1" , Weight:"3, 1", Date: "4, 1", Lbs: "5,1"},
-  	{Name:"1, 1" , Reps: "2, 1" , Weight:"3, 1", Date: "4, 1", Lbs: "5,1"},
-  	{Name:"1, 1" , Reps: "2, 1" , Weight:"3, 1", Date: "4, 1", Lbs: "5,1"}
+    {Name:"Pullup", Reps: "15" , Weight:"0", Date: "2015-10-10", Lbs: "0"},
+  	
     
 	
 ];
-
 
 function buildTable(array){
     
@@ -25,14 +35,14 @@ function buildTable(array){
 	var deleteButton;
     var editButton;
     
-    /*for(var i = 0; i < properties.length; i++)
+    for(var i = 0; i < properties.length; i++)
     {
         
         newHeader = document.createElement("th");
         newHeader.textContent = properties[i];
         
         firstRow.appendChild(newHeader);
-    }*/
+    }
     
     newTable.appendChild(firstRow);
 
@@ -69,7 +79,10 @@ function buildTable(array){
             
             deleteRow( "newTable", this );
         };
-        
+        editButton.onclick = function( ){
+            
+            editRow( "newTable", this );
+        };
 		
                              
         newTable.appendChild(newRow);
@@ -88,7 +101,7 @@ If you are already on the top row and hit 'up' nothing should happen (you should
 Hitting the "Mark Cell" button should permanently change the background of the selected cell to yellow. This should persist even after other cells are selected or marked.
 */
 
-var newTable = document.body.appendChild(buildTable(collection));
+//var newTable = document.body.appendChild(buildTable(collection));
 
 function deleteRow(tableID, currentRowButton){
 
@@ -113,6 +126,19 @@ function deleteRow(tableID, currentRowButton){
         alert(e);
     }
 
+
+}
+
+function editRow(tableID, currentRowButton){
+
+	var row =  currentRowButton.parentNode.parentNode;
+	var name = row.children[0].textContent;
+	var reps = row.children[1].textContent;
+	var weight = row.children[2].textContent;
+	var date = row.children[3].textContent;
+	var lbs = row.children[4].textContent;
+	window.location.href = "/edit?name=" + name + "&reps=" + reps + "&weight=" + weight + "&date=" + date + "&lbs=" + lbs ;
+	
 
 }
 

@@ -1,7 +1,8 @@
 <h1>Exercise Table</h1>
+<script src="script.js"> </script>
 
 {{#if results}}
-<table>
+<table id="exerciseTable">
 	<tr>
 		<th>Name</th>
 		<th>Reps</th>
@@ -18,6 +19,8 @@
   		<td>{{this.weight}}</td>
   		<td>{{this.date}}</td>
   		<td>{{this.lbs}}</td>
+  		<input type="button" value="Delete" onclick="deleteRow('exerciseTable', this)">
+  		<input type="button" value="Edit" onclick="editRow('exerciseTable', this)">
 	</tr>
 
   {{/each}}
